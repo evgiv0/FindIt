@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<FindIt.Models.Category>
 
-@Html.ActionLink("Все категории", "List", "Notice")
+@Html.ActionLink("Все категории", "List", "Notice",null, new { @class = "menu_links" })
 
 @foreach (var link in Model)
 {
@@ -9,7 +9,8 @@
             controller = "Notice",
             action = "List",
             filter = link.CategoryNameEng
-        }
-      
+        },
+        new {@class = "menu_links"}
+
     )
 }

@@ -74,15 +74,28 @@ textarea {
 
 
 
-DIV#categories A {
-    font: bold 1.1em "Arial Narrow","Franklin Gothic Medium",Arial;
+
+
+.menu_links {
+    font: bold 1.3em "Arial Narrow","Franklin Gothic Medium",Arial;
     display: block;
     text-decoration: none;
-    padding: .6em;
-    color: Black;
-    border-bottom: 1px solid silver;
+    padding: 1.0em;
+    color: white;
+    background-color: darkorange;
+    border-bottom: 1px solid navy;
 }
 
+.menu_hover {
+    background-color: navy;
+    color: white;
+}
+
+.menu_selected {
+    background-color: red;
+}
+
+/*
     DIV#categories A.selected {
         background-color: #666;
         color: White;
@@ -94,7 +107,7 @@ DIV#categories A {
 
     DIV#categories A.selected:hover {
         background-color: #666;
-    }
+    }*/
 
 .page-header {
     padding-bottom: 9px;
@@ -142,4 +155,9 @@ DIV#categories A {
 
 .validation-summary-valid {
     display: none;
+}
+
+a:hover{
+    color:white;
+    text-decoration:none;
 }
