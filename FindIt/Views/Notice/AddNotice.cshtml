@@ -1,0 +1,86 @@
+﻿@model FindIt.Models.ModelViews.NoticeView
+
+@{
+    ViewBag.Title = "Добавить объявление";
+}
+
+<h2>Добавить объявление</h2>
+
+@using (Html.BeginForm("AddNotice", "Notice", FormMethod.Post, new { enctype = "multipart/form-data"}))
+{
+    @Html.ValidationSummary()
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.IsLost)
+    </div>
+    <div class="editor-field">
+        @Html.RadioButtonFor(m => m.IsLost, true) Потерял
+        @Html.RadioButtonFor(m => m.IsLost, false) Нашел
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.CategoryID)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(m => m.CategoryID, Model.Categories)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.CityID)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(m => m.CityID, Model.Cities)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Theme)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.Theme)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Content)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(m => m.Content, 5, 100, null)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.AuthorName)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.AuthorName)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Phone)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.Phone)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Email)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.Email)
+    </div>
+
+    <div class="editor-label">
+        @Html.TextBoxFor(m => m.ImageData)
+    </div>
+    <div class="editor-field">
+        @*<img width="150" height="150" src="@Url.Action("GetImage", "Notice", new { Model.ImageData })" />*@
+        <div>Upload new image:
+        <input type="file" name="Image" />
+        </div>
+    </div>
+
+
+    <div class="form-actions">
+        <input type="submit" value="Найти" />
+        @Html.ActionLink("Cancel", "List", null, null, new { @class = "btn" })
+    </div>
+
+}

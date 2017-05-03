@@ -1,0 +1,145 @@
+﻿header, footer, nav, section {
+    display: block;
+}
+
+#wraper{
+    position: relative;
+    width: 920px;
+    margin: 20px auto;
+    background-color: #91ff76
+}
+
+/*#grid_notice{
+    margin: 5px 5px auto;
+    padding: 5px;
+    border: 1px solid #b4b4b4;
+    border-bottom: 2px solid #E6E6E6;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+}
+
+#grid_content{
+   border: 1px solid #feff87;
+    border-bottom: 2px solid #91ff76;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+}
+#grid_content_image{
+    display:inline-block;
+    position: relative;
+    float: left;
+}
+
+#grid_content_theme{
+    display:inline-block;
+    position:relative;
+}*/
+
+
+
+/*#grid_content_content{
+    position:absolute;
+    bottom:0;
+    right:0;
+    padding: 10px 16px;
+}
+
+#grid_content_all{
+    display:inline-block;
+    position: relative;
+}*/
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+
+
+DIV#categories A {
+    font: bold 1.1em "Arial Narrow","Franklin Gothic Medium",Arial;
+    display: block;
+    text-decoration: none;
+    padding: .6em;
+    color: Black;
+    border-bottom: 1px solid silver;
+}
+
+    DIV#categories A.selected {
+        background-color: #666;
+        color: White;
+    }
+
+    DIV#categories A:hover {
+        background-color: #CCC;
+    }
+
+    DIV#categories A.selected:hover {
+        background-color: #666;
+    }
+
+.page-header {
+    padding-bottom: 9px;
+    margin: 10px 0 2px;
+    border-bottom: 1px solid #eee;
+    background-color:aquamarine;
+}
+
+.page-search editor-label {
+    padding-bottom: 9px;
+    border-top: 2px solid #4b4444;
+    border-bottom: 1px solid #eee;
+    height: 100px;
+    background-color: aqua;
+    display: inline-block;
+}
+
+#search.editor-label {
+    margin: 1em 0 0 0;
+    background-color: aqua;
+    display: inline-block;
+}
+
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}

@@ -1,0 +1,15 @@
+﻿@model IEnumerable<FindIt.Models.Category>
+
+@Html.ActionLink("Все категории", "List", "Notice")
+
+@foreach (var link in Model)
+{
+    @Html.RouteLink(link.CategoryName, new
+        {
+            controller = "Notice",
+            action = "List",
+            filter = link.CategoryNameEng
+        }
+      
+    )
+}

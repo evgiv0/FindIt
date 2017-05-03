@@ -1,0 +1,55 @@
+﻿@model FindIt.Models.Notice
+
+<div class="row" id="grid_content">
+    <div class="col-lg-2" id="grid_content_image">
+        @if (Model.ImageData != null)
+        {
+            <img width="100" height="100" src="@Url.Action("GetImage", "Notice", new { noticeID = Model.NoticeID })" />
+        }
+    </div><!--end of col-lg-2-->
+    <div class="col-lg-10" id="grid_content_all">
+        <div class="row" id="innerrow">
+            <div class="col-lg-12" id="grid_content_category">
+                <div class="row" id=" firstRow">
+                    <div class="btn btn-lg btn-link">
+                        @Html.ActionLink(@Model.Theme, "Show", new { id = @Model.NoticeID }, null)
+                    </div>
+                </div>
+
+                <div class="row" id="secondRow">
+                    <div class="col-lg-12">
+                        @Model.Content
+                    </div>
+                </div>
+
+                <div class="row" id="thirdRow">
+                    <div class="col-lg-12">
+                        @if (Model.IsLost == true)
+                        {
+                            <div id="noticeType">Потеряно</div>
+                        }
+                        else
+                        {
+                            <div id="noticeType">Найдено</div>
+
+                        }
+                    </div>
+                </div>
+                <div class="row" id="fouthRow">
+                    <div class="col-lg-2 btn btn-lg btn-link">
+                        <small>@Html.ActionLink(@Model.Category.CategoryName, "List", new { filter = Model.Category.CategoryNameEng }, null)</small>
+                    </div>
+                    <div class="col-lg-2 btn btn-lg btn-link">
+                        <small>@Html.ActionLink(@Model.City.CityName, "List", new { filter = @Model.City.CityNameEng }, null)</small>
+                    </div>
+                    <div class="col-lg-2 col-lg-offset-5">
+                        @Model.DateCreation
+                    </div>
+
+                </div>
+            </div><!--end of grid_content_category-->
+
+
+        </div> <!--end of innerrow-->
+    </div><!--end of grid_content_all-->
+</div><!--end of row-->

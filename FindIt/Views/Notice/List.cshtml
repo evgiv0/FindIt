@@ -1,0 +1,13 @@
+﻿@model PagedList.IPagedList<FindIt.Models.Notice>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "FindIt - Главная";
+}
+@foreach (var notice in Model)
+{
+    Html.RenderPartial("NoticeSummary", notice);
+}
+<div class="pager">
+    @Html.PagedListPager(Model, page => Url.Action("List", new { page }))
+</div>
