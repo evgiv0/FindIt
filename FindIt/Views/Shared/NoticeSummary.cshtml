@@ -1,6 +1,6 @@
 ﻿@model FindIt.Models.Notice
 
-<div class="row" id="grid_content">
+<div class="row grid_content">
     <div class="col-lg-2" id="grid_content_image">
         @if (Model.ImageData != null)
         {
@@ -12,7 +12,7 @@
             <div class="col-lg-12" id="grid_content_category">
                 <div class="row" id=" firstRow">
                     <div class="btn btn-lg btn-link">
-                        @Html.ActionLink(@Model.Theme, "Show", new { id = @Model.NoticeID }, null)
+                        @Html.ActionLink(@Model.Theme, "Show", new { idN = @Model.NoticeID }, null)
                     </div>
                 </div>
 

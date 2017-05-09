@@ -50,9 +50,9 @@ namespace FindIt.Controllers
             }
         }
 
-        public ActionResult Show(int id = 1)
+        public ActionResult Show(int idN)
         {
-            var notices = repository.Notices.Where(p => p.NoticeID == id).Include(p => p.Category).Include(p => p.City).FirstOrDefault();
+            var notices = repository.Notices.Where(p => p.NoticeID == idN).Include(p => p.Category).Include(p => p.City).FirstOrDefault();
             return View(notices);
         }
 

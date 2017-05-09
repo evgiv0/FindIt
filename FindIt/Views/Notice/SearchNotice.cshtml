@@ -6,32 +6,35 @@
 
 @using (Html.BeginForm("SearchPost", "Notice"))
 {
-    <div class="editor-label">
-        @Html.LabelFor(m => m.SearchString)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(m => m.SearchString)
-    </div>
+    @*<div class="searchMenu">*@
+        <div class="editor-label">
+            @Html.LabelFor(m => m.SearchString)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.SearchString)
+        </div>
+    @**</div>
+    <div class="searchMenu">*@
+        <div class="editor-label">
+            @Html.LabelFor(m => m.CategoryID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(m => m.CategoryID, Model.Categories)
+        </div>
+    @*</div>
+    <div class="searchMenu">*@
+        <div class="editor-label">
+            @Html.LabelFor(m => m.CityID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(m => m.CityID, Model.Cities)
+        </div>
+    @*</div>*@
 
-    <div class="editor-label">
-        @Html.LabelFor(m => m.CategoryID)
-    </div>
-    <div class="editor-field">
-        @Html.DropDownListFor(m => m.CategoryID, Model.Categories)
-    </div>
-
-    <div class="editor-label">
-        @Html.LabelFor(m => m.CityID)
-    </div>
-    <div class="editor-field">
-        @Html.DropDownListFor(m => m.CityID, Model.Cities)
-    </div>
-
-
-    <div class="form-actions">
-        <input type="submit" value="Найти" />
-        @*@Html.ActionLink("Cancel", "List", null, null, new { @class = "btn" })*@
-    </div>
+        <div class="form-actions">
+            <input type="submit" value="Найти" />
+            @*@Html.ActionLink("Cancel", "List", null, null, new { @class = "btn" })*@
+        </div>
 
 }
 

@@ -161,3 +161,22 @@ a:hover{
     color:white;
     text-decoration:none;
 }
+
+.grid_content {
+    background-color: darkorange;
+    border: 1px solid navy
+}
+
+.grid_content a {
+    text-decoration: none;
+    color: white;
+}
+
+.grid_content a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+#searchMenu{
+    display:inline-block
+}
