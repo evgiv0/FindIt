@@ -278,6 +278,7 @@
     <Content Include="Views\Nav\Menu.cshtml" />
     <Content Include="Views\Notice\AddNotice.cshtml" />
     <Content Include="Views\Notice\SearchNotice.cshtml" />
+    <Content Include="Views\Notice\ListAjax.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

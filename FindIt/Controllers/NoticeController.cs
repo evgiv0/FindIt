@@ -25,28 +25,57 @@ namespace FindIt.Controllers
 
         public ActionResult List(int? page, string filter = "")
         {
-            int currentPageIndex = page.HasValue ? page.Value : 1; 
-            if(filter != "")
+            if (Request.IsAjaxRequest())
             {
-                var cat = repository.Categories.Where(p => p.CategoryNameEng == filter).FirstOrDefault();
-                if(cat != null)
+                int currentPageIndex = page.HasValue ? page.Value : 1;
+                if (filter != "")
                 {
-                    var result = repository.Notices.Include(p => p.Category).Where(p => p.Category.CategoryNameEng == filter)
-                        .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
-                    return View(result);
+                    var cat = repository.Categories.Where(p => p.CategoryNameEng == filter).FirstOrDefault();
+                    if (cat != null)
+                    {
+                        var result = repository.Notices.Include(p => p.Category).Where(p => p.Category.CategoryNameEng == filter)
+                            .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
+                        return View("ListAjax", result);
+                    }
+                    else
+                    {
+                        var result = repository.Notices.Include(p => p.City).Where(p => p.City.CityNameEng == filter)
+                            .Include(p => p.Category).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
+                        return View("ListAjax", result);
+                    }
                 }
                 else
                 {
-                    var result = repository.Notices.Include(p => p.City).Where(p => p.City.CityNameEng == filter)
-                        .Include(p => p.Category).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
-                    return View(result);
+                    var result = repository.Notices.Include(p => p.Category)
+                        .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
+                    return View("ListAjax", result);
                 }
             }
             else
             {
-                var result = repository.Notices.Include(p => p.Category)
-                    .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
-                return View(result);
+                int currentPageIndex = page.HasValue ? page.Value : 1;
+                if (filter != "")
+                {
+                    var cat = repository.Categories.Where(p => p.CategoryNameEng == filter).FirstOrDefault();
+                    if (cat != null)
+                    {
+                        var result = repository.Notices.Include(p => p.Category).Where(p => p.Category.CategoryNameEng == filter)
+                            .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
+                        return View(result);
+                    }
+                    else
+                    {
+                        var result = repository.Notices.Include(p => p.City).Where(p => p.City.CityNameEng == filter)
+                            .Include(p => p.Category).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
+                        return View(result);
+                    }
+                }
+                else
+                {
+                    var result = repository.Notices.Include(p => p.Category)
+                        .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
+                    return View(result);
+                }
             }
         }
 
