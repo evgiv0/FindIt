@@ -8,23 +8,27 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="container">
+    <div class="grid-container">
         <div class="page-header">
             @Html.ActionLink("Add notice", "AddNotice", "Notice")
         </div>
-        <div class="row">
-            <div class="col-lg-12" id="searchMenu">
-                @{ Html.RenderAction("SearchNotice", "Notice"); }
+        <div class="searchBase">
+            <div class="row">
+                <div class="row">
+                    <div class="col-lg-12" id="searchMenu">
+                        @{ Html.RenderAction("SearchNotice", "Notice"); }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 categories">
+                        @{ Html.RenderAction("Menu", "Nav"); }
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row" id="main_content">
-            <div class="col-lg-3 categories">
-                @{ Html.RenderAction("Menu", "Nav"); }
-            </div>
-            <div class="col-lg-9" id="notices">
-             @RenderBody()
-
-
+            <div class="col-lg-12" id="notices">
+                @RenderBody()
             </div>
         </div>
     </div>
@@ -34,3 +38,4 @@
     <script src="~/Scripts/MyScripts/JqueryScript.js"></script>
 </body>
 </html>
+

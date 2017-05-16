@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<FindIt.Models.Category>
 
-@Html.ActionLink("Все категории", "List", "Notice",null, new { @class = "menu_links" })
 
 @foreach (var link in Model)
 {
@@ -14,3 +13,5 @@
 
     )
 }
+
+@Html.ActionLink("Все категории", "List", "Notice", null, new { @class = "menu_links" , @id="allCategories" })
