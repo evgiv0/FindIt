@@ -10,7 +10,6 @@
 <body>
     <div class="grid-container">
         <div class="page-header">
-            @Html.ActionLink("Главная", "List", "Notice")
             @Html.ActionLink("Add notice", "AddNotice", "Notice")
         </div>
         <div class="searchBase">
@@ -20,11 +19,11 @@
                         @{ Html.RenderAction("SearchNotice", "Notice"); }
                     </div>
                 </div>
-                <div class="row">
+                @*<div class="row">
                     <div class="col-lg-12 categories">
                         @{ Html.RenderAction("Menu", "Nav"); }
                     </div>
-                </div>
+                </di*@v>
             </div>
         </div>
         <div class="row" id="main_content">

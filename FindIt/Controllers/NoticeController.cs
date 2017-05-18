@@ -15,7 +15,6 @@ namespace FindIt.Controllers
     public class NoticeController : Controller
     {
         private INoticeRepository repository;
-        EFDbContext c = new EFDbContext();
         private int DefaultPageSize = 8;
 
         public NoticeController(INoticeRepository repo)
