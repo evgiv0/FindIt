@@ -10,10 +10,10 @@ namespace FindIt.Models.ModelViews
 {
     public class NoticeView
     {
-        [HiddenInput(DisplayValue =false)]
+        [HiddenInput(DisplayValue = false)]
         public int NoticeID { get; set; }
 
-        [Required(ErrorMessage ="Выберите тип объявлений")]
+        [Required(ErrorMessage = "Выберите тип объявлений")]
         [HiddenInput(DisplayValue = false)]
         [DisplayName("Тип объявления")]
         public bool IsLost { get; set; }
@@ -40,25 +40,23 @@ namespace FindIt.Models.ModelViews
         [DataType(DataType.EmailAddress)]
         [DisplayName("Ваш email")]
         public string Email { get; set; }
-        
+
 
         [DisplayName("Ваш телефон")]
         public int Phone { get; set; }
-        
+
         [DisplayName("Город")]
-        public int CityID { get; set; }
+        public int CityId { get; set; }
 
         //public int AuthorID { get; set; }
         //public Author Author { get; set; }
+        //public Notice Notice { get; set; }
 
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
 
-
-
         public IEnumerable<SelectListItem> Categories { get; set; }
         public IEnumerable<SelectListItem> Cities{ get; set; }
-
 
     }
 }

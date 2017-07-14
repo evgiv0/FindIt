@@ -27,13 +27,13 @@
     </div>
 
     <div class="editor-label">
-        @Html.LabelFor(m => m.CityID)
+        @Html.LabelFor(m => m.CityId)
     </div>
     <div class="editor-field">
-        @Html.DropDownListFor(m => m.CityID, Model.Cities)
+        @Html.DropDownListFor(m => m.CityId, Model.Cities)
     </div>
 
-    <div class="editor-label">
+    <div class="editor-label">  
         @Html.LabelFor(m => m.Theme)
     </div>
     <div class="editor-field">
@@ -68,9 +68,9 @@
         @Html.TextBoxFor(m => m.Email)
     </div>
 
-    <div class="editor-label">
-        @Html.TextBoxFor(m => m.ImageData)
-    </div>
+    @*<div class="editor-label">
+        @Html.Hidden(m => m.ImageData)
+    </div>*@
     <div class="editor-field">
         @*<img width="150" height="150" src="@Url.Action("GetImage", "Notice", new { Model.ImageData })" />*@
         <div>Upload new image:

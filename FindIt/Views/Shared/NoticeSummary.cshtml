@@ -37,7 +37,7 @@
                 </div>
                 <div class="row" id="fouthRow">
                     <div class="col-lg-2 btn btn-lg btn-link">
-                        <small>@Html.ActionLink(@Model.Category.CategoryName, "List", new { filter = Model.Category.CategoryNameEng }, null)</small>
+                        <small>@Html.ActionLink(@Model.Category.CategoryName, "List", new { filter = @Model.Category.CategoryNameEng }, null)</small>
                     </div>
                     <div class="col-lg-2 btn btn-lg btn-link">
                         <small>@Html.ActionLink(@Model.City.CityName, "List", new { filter = @Model.City.CityNameEng }, null)</small>

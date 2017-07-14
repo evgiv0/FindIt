@@ -19,7 +19,13 @@ namespace FindIt.Models.ModelViews
         [DisplayName("Город")]
         public int CityID { get; set; }
 
-        public IEnumerable<SelectListItem> Categories { get; set; }
-        public IEnumerable<SelectListItem> Cities { get; set; }
+        public List<SelectListItem> Categories { get; set; }
+        public List<SelectListItem> Cities { get; set; }
+
+        public SearchViewModel()
+        {
+            Categories = new List<SelectListItem>();
+            Cities = new List<SelectListItem>();
+        }
     }
 }

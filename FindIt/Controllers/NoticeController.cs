@@ -22,57 +22,55 @@ namespace FindIt.Controllers
             repository = repo;
         }
 
-        public ActionResult List(int? page, string filter = "")
+        public ActionResult List(int page = 1, string filter="")
         {
             if (Request.IsAjaxRequest())
             {
-                int currentPageIndex = page.HasValue ? page.Value : 1;
                 if (filter != "")
                 {
                     var cat = repository.Categories.Where(p => p.CategoryNameEng == filter).FirstOrDefault();
                     if (cat != null)
                     {
                         var result = repository.Notices.Include(p => p.Category).Where(p => p.Category.CategoryNameEng == filter)
-                            .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
+                            .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(page, DefaultPageSize);
                         return View("ListAjax", result);
                     }
                     else
                     {
                         var result = repository.Notices.Include(p => p.City).Where(p => p.City.CityNameEng == filter)
-                            .Include(p => p.Category).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
+                            .Include(p => p.Category).OrderByDescending(p => p.DateCreation).ToPagedList(page, DefaultPageSize);
                         return View("ListAjax", result);
                     }
                 }
                 else
                 {
                     var result = repository.Notices.Include(p => p.Category)
-                        .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
+                        .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(page, DefaultPageSize);
                     return View("ListAjax", result);
                 }
             }
             else
-            {
-                int currentPageIndex = page.HasValue ? page.Value : 1;
+            { 
                 if (filter != "")
                 {
                     var cat = repository.Categories.Where(p => p.CategoryNameEng == filter).FirstOrDefault();
                     if (cat != null)
                     {
                         var result = repository.Notices.Include(p => p.Category).Where(p => p.Category.CategoryNameEng == filter)
-                            .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
+                            .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(page, DefaultPageSize);
                         return View(result);
                     }
                     else
                     {
                         var result = repository.Notices.Include(p => p.City).Where(p => p.City.CityNameEng == filter)
-                            .Include(p => p.Category).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
+                            .Include(p => p.Category).OrderByDescending(p => p.DateCreation).ToPagedList(page, DefaultPageSize);
                         return View(result);
                     }
                 }
                 else
                 {
                     var result = repository.Notices.Include(p => p.Category)
-                        .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(currentPageIndex, DefaultPageSize);
+                        .Include(p => p.City).OrderByDescending(p => p.DateCreation).ToPagedList(page, DefaultPageSize);
                     return View(result);
                 }
             }
@@ -89,7 +87,6 @@ namespace FindIt.Controllers
         {
             NoticeView notice = new NoticeView();
             notice.Categories = repository.Categories.Select(p => new SelectListItem { Text = p.CategoryName, Value = p.CategoryID.ToString() });
-            notice.Cities = repository.Cities.Select(p => new SelectListItem { Text = p.CityName, Value = p.CityId.ToString() });
 
             return View(notice);
         }
@@ -105,12 +102,12 @@ namespace FindIt.Controllers
                 {
                     noticeForSave.ImageData = new byte[image.ContentLength];
                     noticeForSave.ImageMimeType = image.ContentType;
-                    image.InputStream.Read(noticeForSave.ImageData, 0, image.ContentLength);
+                    image.InputStream.Read(notice.ImageData, 0, image.ContentLength);
                 }
-
+                //noticeForSave = notice.Notice;
                 noticeForSave.AuthorName = notice.AuthorName;
                 noticeForSave.CategoryID = notice.CategoryID;
-                noticeForSave.CityId = notice.CityID;
+                noticeForSave.CityId = notice.CityId;
                 noticeForSave.Content = notice.Content;
                 noticeForSave.Email = notice.Email;
                 noticeForSave.Phone = notice.Phone;
@@ -130,11 +127,22 @@ namespace FindIt.Controllers
 
         public ActionResult SearchNotice()
         {
-            SearchViewModel searchForm = new SearchViewModel()
+            SearchViewModel searchForm = new SearchViewModel();
+
+            var categories = repository.Categories.Select(p => new SelectListItem { Text = p.CategoryName, Value = p.CategoryID.ToString() });
+            searchForm.Categories.Add(new SelectListItem { Text = "Выберите категорию" });
+            foreach (var item in categories)
             {
-                Categories = repository.Categories.Select(p => new SelectListItem { Text = p.CategoryName, Value = p.CategoryID.ToString() }),
-                Cities = repository.Cities.Select(p => new SelectListItem { Text = p.CityName, Value = p.CityId.ToString() })
-            };
+                searchForm.Categories.Add(item);
+            }
+
+            //notice.Categories = repository.Categories.Select(p => new SelectListItem { Text = p.CategoryName, Value = p.CategoryID.ToString() });
+            var cities = repository.Cities.Select(p => new SelectListItem { Text = p.CityName, Value = p.CityId.ToString() });
+            searchForm.Cities.Add(new SelectListItem { Text = "Выберите город" });
+            foreach (var item in cities)
+            {
+                searchForm.Cities.Add(item);
+            }
 
             return View(searchForm);
         }
@@ -149,13 +157,22 @@ namespace FindIt.Controllers
             {
                 notices = notices.Include(p => p.Category).Where(p => p.Category.CategoryID == searchParams.CategoryID);
             }
+            else
+            {
+                notices = notices.Include(p => p.Category);
+            }
 
             if (searchParams.CityID != 0)
             {
                 notices = notices.Include(p => p.City).Where(p => p.City.CityId== searchParams.CityID);
             }
+            else
+            {
+                notices = notices.Include(p => p.City);
 
-            if(searchParams.SearchString != null)
+            }
+
+            if (searchParams.SearchString != null)
             {
                 notices = notices.Where(p => p.Theme.Contains(searchParams.SearchString) || p.Content.Contains(searchParams.SearchString));
 

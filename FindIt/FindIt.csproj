@@ -261,7 +261,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\MyScripts\JqueryScript.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -279,6 +281,7 @@
     <Content Include="Views\Notice\AddNotice.cshtml" />
     <Content Include="Views\Notice\SearchNotice.cshtml" />
     <Content Include="Views\Notice\ListAjax.cshtml" />
+    <Content Include="Views\Shared\_LayoutMin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
