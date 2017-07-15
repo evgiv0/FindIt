@@ -9,6 +9,7 @@ using System.Data.Entity;
 using FindIt.Models;
 using FindIt.Models.ModelViews;
 using PagedList;
+using AutoMapper;
 
 namespace FindIt.Controllers
 {
@@ -87,6 +88,7 @@ namespace FindIt.Controllers
         {
             NoticeView notice = new NoticeView();
             notice.Categories = repository.Categories.Select(p => new SelectListItem { Text = p.CategoryName, Value = p.CategoryID.ToString() });
+            notice.Cities = repository.Cities.Select(p => new SelectListItem { Text = p.CityName, Value = p.CityId.ToString() });
 
             return View(notice);
         }
@@ -95,24 +97,35 @@ namespace FindIt.Controllers
         public ActionResult AddNotice(NoticeView notice, HttpPostedFileBase image)
         {
 
-            Notice noticeForSave = new Notice();
             if (ModelState.IsValid)
             {
-                if(image != null)
+                //if(image != null)
+                //{
+                //    noticeForSave.ImageData = new byte[image.ContentLength];
+                //    noticeForSave.ImageMimeType = image.ContentType;
+                //    image.InputStream.Read(notice.ImageData, 0, image.ContentLength);
+                //}
+
+                Mapper.Initialize(cfg => cfg.CreateMap<NoticeView, Notice>()
+                .ForMember("DateCreation", opt => opt.UseValue(DateTime.Now)));
+                Notice noticeForSave = Mapper.Map<NoticeView, Notice>(notice);
+
+                if (image != null)
                 {
                     noticeForSave.ImageData = new byte[image.ContentLength];
                     noticeForSave.ImageMimeType = image.ContentType;
-                    image.InputStream.Read(notice.ImageData, 0, image.ContentLength);
+                    image.InputStream.Read(noticeForSave.ImageData, 0, image.ContentLength);
                 }
+
                 //noticeForSave = notice.Notice;
-                noticeForSave.AuthorName = notice.AuthorName;
-                noticeForSave.CategoryID = notice.CategoryID;
-                noticeForSave.CityId = notice.CityId;
-                noticeForSave.Content = notice.Content;
-                noticeForSave.Email = notice.Email;
-                noticeForSave.Phone = notice.Phone;
-                noticeForSave.Theme = notice.Theme;
-                noticeForSave.DateCreation = DateTime.Now;
+                //noticeForSave.AuthorName = notice.AuthorName;
+                //noticeForSave.CategoryID = notice.CategoryID;
+                //noticeForSave.CityId = notice.CityId;
+                //noticeForSave.Content = notice.Content;
+                //noticeForSave.Email = notice.Email;
+                //noticeForSave.Phone = notice.Phone;
+                //noticeForSave.Theme = notice.Theme;
+                //noticeForSave.DateCreation = DateTime.Now;
                 //noticeForSave.IsLost.
                 repository.Add(noticeForSave);
                 repository.SaveNotice();
