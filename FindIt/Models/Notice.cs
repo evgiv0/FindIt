@@ -13,7 +13,7 @@ namespace FindIt.Models
         [HiddenInput(DisplayValue = false)]
         public int NoticeID { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:d}")]
+        [DisplayFormat(DataFormatString = "{0:yyy-MM-dd}")]
         public DateTime DateCreation{ get; set; }
         public DateTime? DateEnd{ get; set; }
 
@@ -45,6 +45,7 @@ namespace FindIt.Models
         public string Email { get; set; }
 
         [DisplayName("Ваш телефон")]
+        [DataType(DataType.PhoneNumber)]
         public int Phone { get; set; }
 
         //[HiddenInput(DisplayValue = false)]
