@@ -29,9 +29,9 @@
                 }
             </div>
         </div>
-        <div class="row">
+        <div class="row ">
             
-                @Model.Content
+                @Html.DisplayFor(model => model.Content)
 
         </div>
 
@@ -45,7 +45,7 @@
                 @Html.ActionLink(@Model.City.CityName, "List", new { filter = @Model.City.CityNameEng }, null)
             </div>
             <div class="col-md-4 text-right">
-                @Model.DateCreation
+                @Html.DisplayFor(model => model.DateCreation)
             </div>
 
         </div>

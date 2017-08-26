@@ -13,7 +13,8 @@ namespace FindIt.Models
         [HiddenInput(DisplayValue = false)]
         public int NoticeID { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyy-MM-dd}")]
+        [DisplayName("Дата создания")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
         public DateTime DateCreation{ get; set; }
         public DateTime? DateEnd{ get; set; }
 
@@ -41,11 +42,10 @@ namespace FindIt.Models
 
         [Required(ErrorMessage = "Поле Email не может быть пустым")]
         [DataType(DataType.EmailAddress)]
-        [DisplayName("Ваш email")]
+        [DisplayName("Ваш e-mail")]
         public string Email { get; set; }
 
         [DisplayName("Ваш телефон")]
-        [DataType(DataType.PhoneNumber)]
         public int Phone { get; set; }
 
         //[HiddenInput(DisplayValue = false)]

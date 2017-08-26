@@ -8,45 +8,25 @@
 {
 
 
-        <h3 class="text-center">Поиск объявления:</h3>
-        @*<div class="form-horizontal">*@
-            <div class="form-group">
-                @*<div class="row">*@
-                @*@Html.LabelFor(m => m.SearchString, htmlAttributes: new { @class = "control-label col-md-3" })*@
-                @*<div class="col-md-9">*@
-                    @Html.EditorFor(m => m.SearchString, new { htmlAttributes = new { @class = "form-control" } })
-                @*</div>*@
-                @*</div>*@
+        <h3 class="text-center text-white">Поиск объявления:</h3>
+        <div class="row">
+            <div class="form-group col-md-3 text-center">
+                @Html.EditorFor(m => m.SearchString, new { htmlAttributes = new { @class = "form-control", placeholder = "Введите строку для поиска" } } )
             </div>
-            <div class="form-group">
-                @*<div class="editor-label">*@
-                @*<div class="row">*@
-                @*@Html.LabelFor(m => m.CategoryID, htmlAttributes: new { @class = "control-label col-md-3" })*@
-                @*</div>
-                    <div class="editor-field">*@
-                @*<div class="col-md-9">*@
-                    @Html.DropDownListFor(m => m.CategoryID, Model.Categories, new { htmlAttributes = new { @class = "form-control" } })
-                @*</div>*@
-                @*</div>*@
+            <div class="form-group col-md-3 text-center">
+
+                @Html.DropDownListFor(m => m.CategoryID, Model.Categories, htmlAttributes: new { @class = "form-control" } )
             </div>
-            <div class="form-group">
-                @*<div class="row">*@
-                @*<div class="editor-label">*@
-                @*@Html.LabelFor(m => m.CityID, htmlAttributes: new { @class = "control-label col-md-3" })*@
-                @*
-                        </div>
-                    <div class="editor-field">*@
-                @*<div class="col-md-9">*@
-                    @Html.DropDownListFor(m => m.CityID, Model.Cities, new { htmlAttributes = new { @class = "form-control" } })
-                @*</div>*@
-                @*</div>*@
+            <div class="form-group col-md-3 text-center">
+
+                @Html.DropDownListFor(m => m.CityID, Model.Cities, htmlAttributes: new { @class = "form-control" } )
             </div>
 
-            <div class="form-group">
-                <input class="btn btn-default col-md-offset-3" type="submit" value="Найти" />
-                @*@Html.ActionLink("Cancel", "List", null, null, new { @class = "btn" })*@
+            <div class="form-group col-md-3 text-center">
+
+                <input class="btn btn-default col-md-offset-3" id="searchButton" type="submit" value="Найти" />
             </div>
-     
+        </div>
 
 }
 

@@ -4,5 +4,46 @@
     ViewBag.Title = "Show";
 }
 
-<h2>Show</h2> 
-@Html.DisplayForModel()
+<div class="container show-notice">
+    <h2 class="text-center">Просмотр объявления</h2>
+    <div class="row">
+        <div class="col-md-3">
+            @if (Model.ImageData != null)
+            {
+                <img class="img-thumbnail" width="250" src="@Url.Action("GetImage", "Notice", new { noticeID = Model.NoticeID })" />
+            }
+        </div>
+        <div class="col-md-9">
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Theme)</dt>
+                <dd>@Html.DisplayFor(model => model.Theme)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.Category.CategoryName)</dt>
+                <dd>@Html.DisplayFor(model => model.Category.CategoryName)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.City.CityName)</dt>
+                <dd>@Html.DisplayFor(model => model.City.CityName)</dd>
+            </dl>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.Content)</dt>
+                <dd>@Html.DisplayFor(model => model.Content)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.DateCreation)</dt>
+                <dd>@Html.DisplayFor(model => model.DateCreation)</dd>
+
+            </dl>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.AuthorName)</dt>
+                <dd>@Html.DisplayFor(model => model.AuthorName)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.Phone)</dt>
+                <dd>@Html.DisplayFor(model => model.Phone)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+                <dd>@Html.DisplayFor(model => model.Email)</dd>
+            </dl>
+        </div>
+    </div>
+</div>
